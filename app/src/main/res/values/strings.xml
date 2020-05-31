@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Scientific Calculator</string>
+    <string name="square_root_symbol">y \u221a x</string>
 </resources>
