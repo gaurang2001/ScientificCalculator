@@ -12,14 +12,14 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView textView, textView2;
-    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal, btn, b_plus, b_minus, b_multiply, b_divide, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan, b_exponent;
+    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal,b_sign, btn, b_plus, b_minus, b_multiply, b_divide,b_backspace,b_percentage, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan, b_exponent;
     float result, result2;
     boolean Add, Sub, Mul, Div, root_base, error, exp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        b_sign = findViewById(R.id.b_sign);
         b1 = findViewById(R.id.b1);
         b2 = findViewById(R.id.b2);
         b3 = findViewById(R.id.b3);
@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         b8 = findViewById(R.id.b8);
         b9 = findViewById(R.id.b9);
         b0 = findViewById(R.id.b0);
+        b_backspace = findViewById(R.id.b_backspace);
+        b_percentage = findViewById(R.id.b_percentage);
         b_dot = findViewById(R.id.b_dot);
         b_equal = findViewById(R.id.b_equal);
         btn = findViewById(R.id.b_ac);
@@ -219,6 +221,17 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(result+"");
             }
         });
+
+        b_percentage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                result = Float.parseFloat(textView.getText()+ "");
+                result2 = result / 100;
+                textView2.setText("");
+                textView.setText(result2+"");
+            }
+        });
+
         b_ln.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,6 +239,21 @@ public class MainActivity extends AppCompatActivity {
                 result = (float) Math.log(result);
                 textView2.setText("");
                 textView.setText(result+"");
+            }
+
+        });
+
+        b_sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(result != 0) {
+
+                    result = result * -1;
+                    textView2.setText("");
+                    textView.setText(result+"");
+                }
+
             }
 
         });
@@ -258,6 +286,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        b_backspace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str=textView.getText().toString();
+                if (str.length() >1 ) {
+                    str = str.substring(0, str.length() - 1);
+                    textView.setText(str);
+                } else if (str.length() <=1 ) {
+                    textView.setText("0");
+                  }
+            }
+        });
+
         b_sin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
