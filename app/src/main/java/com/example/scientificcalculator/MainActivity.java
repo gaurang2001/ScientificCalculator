@@ -12,11 +12,11 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     // Initialise variables
-    TextView textView, textView2;
+    TextView textView, textView2, textView3;
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal,b_sign, btn, b_plus, b_minus, b_multiply, b_divide,b_backspace,b_percentage, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan, b_exponent;
     float result; // Stores number in textView
     float result2; // Used when arithmetic or scientific functions are called
-    boolean Add, Sub, Mul, Div, root_base, exp; // Stores truth value of function call
+    boolean Add, Sub, Mul, Div, exp; // Stores truth value of function call
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         b_exponent = findViewById(R.id.b_exponent);
         textView = findViewById(R.id.textView);
         textView2 = findViewById(R.id.textView2);
+        textView3 = findViewById(R.id.textView3);
 
         // Default value of textView is always 0
         textView.setText("" + 0);
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "1");
                 }
+                textView3.setText(textView3.getText()+"1");
             }
         });
 
@@ -72,10 +74,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (textView.getText().equals("Error") || textView.getText().equals("Infinity") || textView.getText().equals("0")) {
+                    textView.setText("2");
                 }
                 else {
                     textView.setText(textView.getText() + "2");
                 }
+                textView3.setText(textView3.getText()+"2");
             }
         });
 
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "3");
                 }
+                textView3.setText(textView3.getText()+"3");
             }
         });
 
@@ -100,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "4");
                 }
+                textView3.setText(textView3.getText()+"4");
             }
         });
 
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "5");
                 }
+                textView3.setText(textView3.getText()+"5");
             }
         });
 
@@ -124,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "6");
                 }
+                textView3.setText(textView3.getText()+"6");
             }
         });
 
@@ -136,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "7");
                 }
+                textView3.setText(textView3.getText()+"7");
             }
         });
 
@@ -148,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "8");
                 }
+                textView3.setText(textView3.getText()+"8");
             }
         });
 
@@ -160,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "9");
                 }
+                textView3.setText(textView3.getText()+"9");
             }
         });
 
@@ -172,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     textView.setText(textView.getText() + "0");
                 }
+                textView3.setText(textView3.getText()+"0");
             }
         });
 
@@ -179,15 +191,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 textView.setText(textView.getText() + ".");
+                textView3.setText(textView3.getText()+".");
             }
+
         });
 
         // Perform addition
         b_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result=Float.parseFloat(textView.getText()+ "");
+                String str = textView3.getText().toString();
+                if(Sub || Mul || Div){
+                    Sub = Mul = Div = false;
+                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                }
+                else if (Add) {
+                    textView3.setText(str.substring(0,str.length()-3)); // When "+" is pressed back to back
+                }
+                else
+                    result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("+");
+                textView3.setText(textView3.getText()+" + ");
                 Add=true;
                 textView.setText("0");
             }
@@ -197,8 +221,18 @@ public class MainActivity extends AppCompatActivity {
         b_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result=Float.parseFloat(textView.getText()+ "");
+                String str = textView3.getText().toString();
+                if(Add || Mul || Div){
+                    Add = Mul = Div = false;
+                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                }
+                else if (Sub) {
+                    textView3.setText(str.substring(0,str.length()-3)); // When "-" is pressed back to back
+                }
+                else
+                    result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("-");
+                textView3.setText(textView3.getText()+" - ");
                 Sub=true;
                 textView.setText("0");
             }
@@ -208,8 +242,18 @@ public class MainActivity extends AppCompatActivity {
         b_multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result=Float.parseFloat(textView.getText()+ "");
+                String str = textView3.getText().toString();
+                if(Sub || Add || Div){
+                    Sub = Add = Div = false;
+                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                }
+                else if (Mul) {
+                    textView3.setText(str.substring(0,str.length()-3)); // When "*" is pressed back to back
+                }
+                else
+                    result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("*");
+                textView3.setText(textView3.getText()+" * ");
                 Mul=true;
                 textView.setText("0");
             }
@@ -219,8 +263,18 @@ public class MainActivity extends AppCompatActivity {
         b_divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result=Float.parseFloat(textView.getText()+ "");
+                String str = textView3.getText().toString();
+                if(Sub || Mul || Add){
+                    Sub = Mul = Add = false;
+                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                }
+                else if (Div) {
+                    textView3.setText(str.substring(0,str.length()-3)); // When "/" is pressed back to back
+                }
+                else
+                    result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("/");
+                textView3.setText(textView3.getText()+" / ");
                 Div=true;
                 textView.setText("0");
             }
@@ -231,9 +285,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 result = Float.parseFloat(textView.getText()+ "");
+                textView3.setText("log("+result+") = ");
                 result = (float) Math.log10(result);
                 textView2.setText("");
                 textView.setText(result+"");
+                textView3.setText(result+"");
             }
         });
 
@@ -242,9 +298,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 result = Float.parseFloat(textView.getText()+ "");
-                result2 = result / 100;
+                result = result/100;
                 textView2.setText("");
-                textView.setText(result2+"");
+                textView.setText(result+"");
+                textView3.setText(textView3.getText()+"%");
             }
         });
 
@@ -253,11 +310,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 result = Float.parseFloat(textView.getText()+ "");
+                textView3.setText("ln("+result+") = ");
                 result = (float) Math.log(result);
                 textView2.setText("");
                 textView.setText(result+"");
+                textView3.setText(result+"");
             }
-
         });
 
         // Change sign of number
@@ -269,19 +327,18 @@ public class MainActivity extends AppCompatActivity {
                     result1 = result1 * -1;
                     textView2.setText("");
                     textView.setText(result1+"");
+                    textView3.setText(textView3.getText().toString()+"*(-1)");
                 }
             }
         });
 
         // Find root of the number
-        // TODO: Change code
         b_root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result=Float.parseFloat(textView.getText()+ "");
-                textView2.setText("y");
-                root_base=true;
-                textView.setText(null);
+                textView.setText(Math.sqrt(result)+"");
+                textView3.setText("\u221A"+result+" = "+textView.getText());
             }
         });
 
@@ -296,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText("Error");
                 }
                 else {
+                    textView3.setText(Math.round(result)+"! = ");
                     float total = 1;
                     while (result > 1) {
                         total *= result;
@@ -303,6 +361,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     textView2.setText("");
                     textView.setText(total + "");
+                    textView3.setText(total+"");
                 }
             }
         });
@@ -312,12 +371,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = textView.getText().toString();
-                if (str.length() >1 ) {
+                if (str.length() > 1 ) {
                     str = str.substring(0, str.length() - 1);
                     textView.setText(str);
-                } else if (str.length() <= 1 ) {
+                }
+                else if (str.length() <= 1) {
                     textView.setText("0");
-                  }
+                }
+
+                String str1 = textView3.getText().toString();
+                textView3.setText(str1.substring(0, str1.length()-1));
             }
         });
 
@@ -329,6 +392,7 @@ public class MainActivity extends AppCompatActivity {
                 double radians = Math.toRadians(degrees);
                 result = (float) Math.sin(radians);
                 textView.setText("" + result);
+                textView3.setText("sin("+degrees+") = "+result);
             }
         });
 
@@ -340,6 +404,7 @@ public class MainActivity extends AppCompatActivity {
                 double radians = Math.toRadians(degrees);
                 result = (float) Math.cos(radians);
                 textView.setText("" + result);
+                textView3.setText("cos("+degrees+") = "+result);
             }
         });
 
@@ -351,6 +416,7 @@ public class MainActivity extends AppCompatActivity {
                 double radians = Math.toRadians(degrees);
                 result = (float) Math.tan(radians);
                 textView.setText("" + result);
+                textView3.setText("tan("+degrees+") = "+result);
             }
         });
 
@@ -358,9 +424,9 @@ public class MainActivity extends AppCompatActivity {
         b_exponent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result=Float.parseFloat(textView.getText()+ "");
+                result = Float.parseFloat(textView.getText()+ "");
                 textView2.setText("y");
-                exp=true;
+                exp = true;
                 textView.setText(null);
             }
         });
@@ -371,7 +437,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 textView.setText("0");
                 textView2.setText("");
-                Add = Sub = Mul = Div = root_base = exp = false;
+                textView3.setText("");
+                result = result2 = 0;
+                Add = Sub = Mul = Div = exp = false;
             }
         });
 
@@ -382,30 +450,36 @@ public class MainActivity extends AppCompatActivity {
                 result2=Float.parseFloat(textView.getText()+"");
                 if(Add==true){
                     textView.setText(result + result2+"");
+                    float sum = result+result2;
+                    String str1 = textView3.getText().toString();
+                    textView3.setText(str1+" = "+sum+"");
                     Add=false;
                     textView2.setText("");
                 }
                 if(Sub==true){
                     textView.setText(result - result2+"");
+                    float diff = result-result2;
+                    String str1 = textView3.getText().toString();
+                    textView3.setText(str1+" = "+diff+"");
                     Sub=false;
                     textView2.setText("");
                 }
                 if(Mul==true){
                     textView.setText(result * result2+"");
+                    float prod = result*result2;
+                    String str1 = textView3.getText().toString();
+                    textView3.setText(str1+" = "+prod+"");
                     Mul=false;
                     textView2.setText("");
                 }
                 if(Div==true){
                     textView.setText(result / result2+"");
+                    float div = result/result2;
+                    String str1 = textView3.getText().toString();
+                    textView3.setText(str1+" = "+div+"");
                     Div=false;
                     textView2.setText("");
                 }
-                if (root_base==true){
-                    textView.setText(Math.pow(result, 1/result2)+"");
-                    root_base=false;
-                    textView2.setText("");
-                }
-
                 if (exp==true){
                     textView.setText(Math.pow(result, result2)+"");
                     exp=false;
