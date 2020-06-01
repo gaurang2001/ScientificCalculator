@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (textView.getText().equals("Error") || textView.getText().equals("Infinity") || textView.getText().equals("0")) {
-                    textView.setText(("2"));
                 }
                 else {
                     textView.setText(textView.getText() + "2");
@@ -406,6 +405,7 @@ public class MainActivity extends AppCompatActivity {
                     root_base=false;
                     textView2.setText("");
                 }
+
                 if (exp==true){
                     textView.setText(Math.pow(result, result2)+"");
                     exp=false;
