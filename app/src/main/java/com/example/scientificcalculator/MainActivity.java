@@ -11,10 +11,13 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Initialise variables
     TextView textView, textView2;
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal,b_sign, btn, b_plus, b_minus, b_multiply, b_divide,b_backspace,b_percentage, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan, b_exponent;
-    float result, result2;
-    boolean Add, Sub, Mul, Div, root_base, error, exp;
+    float result; // Stores number in textView
+    float result2; // Used when arithmetic or scientific functions are called
+    boolean Add, Sub, Mul, Div, root_base, exp; // Stores truth value of function call
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
         b_exponent = findViewById(R.id.b_exponent);
         textView = findViewById(R.id.textView);
         textView2 = findViewById(R.id.textView2);
+
+        // Default value of textView is always 0
         textView.setText("" + 0);
+
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,42 +182,52 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(textView.getText() + ".");
             }
         });
+
+        // Perform addition
         b_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("+");
                 Add=true;
-                textView.setText(null);
+                textView.setText("0");
             }
         });
+
+        // Perform subtraction
         b_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("-");
                 Sub=true;
-                textView.setText(null);
+                textView.setText("0");
             }
         });
+
+        // Perform multiplication
         b_multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("*");
                 Mul=true;
-                textView.setText(null);
+                textView.setText("0");
             }
         });
+
+        // Perform division
         b_divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result=Float.parseFloat(textView.getText()+ "");
                 textView2.setText("/");
                 Div=true;
-                textView.setText(null);
+                textView.setText("0");
             }
         });
+
+        // Returns log -base 10- of the number
         b_log10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Convert number to percentage
         b_percentage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Returns log -base e- of the number
         b_ln.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,20 +261,21 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        // Change sign of number
         b_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(result != 0) {
-
-                    result = result * -1;
+                float result1 = Float.parseFloat(textView.getText()+ "");
+                if(result1 != 0) {
+                    result1 = result1 * -1;
                     textView2.setText("");
-                    textView.setText(result+"");
+                    textView.setText(result1+"");
                 }
-
             }
-
         });
+
+        // Find root of the number
+        // TODO: Change code
         b_root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,6 +285,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(null);
             }
         });
+
+        // Returns factorial of number
         b_xfac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -286,19 +307,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Deletes last character
         b_backspace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str=textView.getText().toString();
+                String str = textView.getText().toString();
                 if (str.length() >1 ) {
                     str = str.substring(0, str.length() - 1);
                     textView.setText(str);
-                } else if (str.length() <=1 ) {
+                } else if (str.length() <= 1 ) {
                     textView.setText("0");
                   }
             }
         });
 
+        // Returns sine of the number
         b_sin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -308,6 +332,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("" + result);
             }
         });
+
+        // Returns cosine of the number
         b_cos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -317,6 +343,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("" + result);
             }
         });
+
+        // Returns tangent of the number
         b_tan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -326,6 +354,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("" + result);
             }
         });
+
+        // Performs power function
         b_exponent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -335,6 +365,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(null);
             }
         });
+
+        // Clears everything
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -343,6 +375,8 @@ public class MainActivity extends AppCompatActivity {
                 Add = Sub = Mul = Div = root_base = exp = false;
             }
         });
+
+        // Returns final answer
         b_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
