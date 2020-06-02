@@ -15,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
     TextView textView, textView2, textView3;
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal,b_sign, btn, b_plus, b_minus, b_multiply, b_divide,b_backspace,b_percentage, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan,b_asin,b_acos,b_atan,b_ex, b_exponent;
     float result; // Stores number in textView
-    float result2; // Used when arithmetic or scientific functions are called
+    float result2, result3=0; // Used when arithmetic or scientific functions are called
     boolean Add, Sub, Mul, Div, exp; // Stores truth value of function call
-
+    int k=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -205,19 +205,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = textView3.getText().toString();
+
                 if(Sub || Mul || Div){
                     Sub = Mul = Div = false;
                     textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
                 }
-                else if (Add) {
+                else if (Add && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "+" is pressed back to back
                 }
-                else
+                else{
                     result=Float.parseFloat(textView.getText()+ "");
+                    result3=result+result3;
+                    k++;
+                }
                 textView2.setText("+");
                 textView3.setText(textView3.getText()+" + ");
                 Add=true;
                 textView.setText("0");
+
+
             }
         });
 
@@ -230,15 +236,24 @@ public class MainActivity extends AppCompatActivity {
                     Add = Mul = Div = false;
                     textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
                 }
-                else if (Sub) {
+                else if (Sub && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "-" is pressed back to back
                 }
-                else
-                    result=Float.parseFloat(textView.getText()+ "");
+                else {
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3-result;
+
+                }
                 textView2.setText("-");
                 textView3.setText(textView3.getText()+" - ");
                 Sub=true;
                 textView.setText("0");
+
             }
         });
 
@@ -251,11 +266,18 @@ public class MainActivity extends AppCompatActivity {
                     Sub = Add = Div = false;
                     textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
                 }
-                else if (Mul) {
+                else if (Mul && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "*" is pressed back to back
                 }
-                else
+                else{
                     result=Float.parseFloat(textView.getText()+ "");
+                    if(k==0){
+                    result3=result;
+                    k++;
+                    }
+                    else
+                        result3=result*result3;
+                }
                 textView2.setText("*");
                 textView3.setText(textView3.getText()+" * ");
                 Mul=true;
@@ -272,11 +294,18 @@ public class MainActivity extends AppCompatActivity {
                     Sub = Mul = Add = false;
                     textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
                 }
-                else if (Div) {
+                else if (Div && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "/" is pressed back to back
                 }
-                else
-                    result=Float.parseFloat(textView.getText()+ "");
+                else {
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3/result;
+                }
                 textView2.setText("/");
                 textView3.setText(textView3.getText()+" / ");
                 Div=true;
@@ -491,7 +520,7 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("0");
                 textView2.setText("");
                 textView3.setText("");
-                result = result2 = 0;
+                result = result2 = result3=k=0;
                 Add = Sub = Mul = Div = exp = false;
             }
         });
@@ -501,33 +530,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 result2=Float.parseFloat(textView.getText()+"");
+                k=0;
+
                 if(Add==true){
-                    textView.setText(result + result2+"");
-                    float sum = result+result2;
+                    textView.setText(result2 + result3+"y"+result3);
+                    float sum = result2+result3;
                     String str1 = textView3.getText().toString();
                     textView3.setText(str1+" = "+sum+"");
                     Add=false;
                     textView2.setText("");
+                    result3=0;
                 }
                 if(Sub==true){
-                    textView.setText(result - result2+"");
-                    float diff = result-result2;
+                    textView.setText(result3 - result2+"");
+                    float diff = result3-result2;
                     String str1 = textView3.getText().toString();
                     textView3.setText(str1+" = "+diff+"");
                     Sub=false;
                     textView2.setText("");
+                    result3=0;
+
                 }
                 if(Mul==true){
-                    textView.setText(result * result2+"");
-                    float prod = result*result2;
+                    textView.setText(result3 * result2+"");
+                    float prod = result3 * result2;
                     String str1 = textView3.getText().toString();
                     textView3.setText(str1+" = "+prod+"");
                     Mul=false;
                     textView2.setText("");
+                    result3=0;
                 }
                 if(Div==true){
-                    textView.setText(result / result2+"");
-                    float div = result/result2;
+                    textView.setText(result3 / result2+"");
+                    float div = result3/result2;
                     String str1 = textView3.getText().toString();
                     textView3.setText(str1+" = "+div+"");
                     Div=false;
