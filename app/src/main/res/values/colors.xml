@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F3CA20</color>
+    <color name="colorPrimaryDark">#141414</color>
+    <color name="colorAccent">#201E20</color>
+    <color name="numbers">#FFFFFF</color>
+    <color name="textView3">#F8F8FF</color>
+</resources>
