@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
 
 
     <TextView
@@ -39,24 +40,20 @@
         app:layout_constraintVertical_bias="0.166" />
 
     <Button
-<<<<<<< HEAD
-        android:id="@+id/b_acos"
-=======
-        android:id="@+id/b_cos-1"
->>>>>>> upstream/master
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="91dp"
-        android:layout_height="61dp"
-        android:text="cos\u207B\u00B9"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/colorPrimary"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/b_log10"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
+    android:id="@+id/b_acos"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:layout_width="91dp"
+    android:layout_height="61dp"
+    android:text="cos\u207B\u00B9"
+    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+    android:textColor="@color/colorPrimary"
+    android:textSize="28sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toEndOf="@+id/b_log10"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.27" />
 
     <Button
         android:id="@+id/b9"
@@ -294,24 +291,20 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-<<<<<<< HEAD
-        android:id="@+id/b_asin"
-=======
-        android:id="@+id/b_sin-1"
->>>>>>> upstream/master
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="91dp"
-        android:layout_height="61dp"
-        android:text="sin\u207B\u00B9"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/colorPrimary"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
+    android:id="@+id/b_asin"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:layout_width="91dp"
+    android:layout_height="61dp"
+    android:text="sin\u207B\u00B9"
+    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+    android:textColor="@color/colorPrimary"
+    android:textSize="28sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.021"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.27" />
 
     <Button
         android:id="@+id/b_plus"
@@ -516,26 +509,22 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-<<<<<<< HEAD
-        android:id="@+id/b_atan"
-=======
-        android:id="@+id/b_tan-1"
->>>>>>> upstream/master
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="91dp"
-        android:layout_height="61dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginRight="120dp"
-        android:text="tan\u207B\u00B9"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/colorPrimary"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/b_tan"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.27" />
+    android:id="@+id/b_atan"
+    style="@style/Widget.AppCompat.Button.Borderless"
+    android:layout_width="91dp"
+    android:layout_height="61dp"
+    android:layout_marginEnd="120dp"
+    android:layout_marginRight="120dp"
+    android:text="tan\u207B\u00B9"
+    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+    android:textColor="@color/colorPrimary"
+    android:textSize="28sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/b_tan"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.27" />
 
     <Button
         android:id="@+id/b_cos"
