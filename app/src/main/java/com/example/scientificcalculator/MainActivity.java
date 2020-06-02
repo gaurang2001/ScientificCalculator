@@ -13,11 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Initialise variables
     TextView textView, textView2, textView3;
-<<<<<<< HEAD
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal,b_sign, btn, b_plus, b_minus, b_multiply, b_divide,b_backspace,b_percentage, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan,b_asin,b_acos,b_atan,b_ex, b_exponent;
-=======
-    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal,b_sign, btn, b_plus, b_minus, b_multiply, b_divide,b_backspace,b_percentage, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan, b_exponent;
->>>>>>> upstream/master
     float result; // Stores number in textView
     float result2; // Used when arithmetic or scientific functions are called
     boolean Add, Sub, Mul, Div, exp; // Stores truth value of function call
@@ -53,13 +49,10 @@ public class MainActivity extends AppCompatActivity {
         b_sin = findViewById(R.id.b_sin);
         b_cos = findViewById(R.id.b_cos);
         b_tan = findViewById(R.id.b_tan);
-<<<<<<< HEAD
         b_asin = findViewById(R.id.b_asin);
         b_acos = findViewById(R.id.b_acos);
         b_atan = findViewById(R.id.b_atan);
         b_ex = findViewById(R.id.b_ex);
-=======
->>>>>>> upstream/master
         b_exponent = findViewById(R.id.b_exponent);
         textView = findViewById(R.id.textView);
         textView2 = findViewById(R.id.textView2);
@@ -431,7 +424,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
         b_asin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -481,8 +473,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-=======
->>>>>>> upstream/master
         // Performs power function
         b_exponent.setOnClickListener(new View.OnClickListener() {
             @Override

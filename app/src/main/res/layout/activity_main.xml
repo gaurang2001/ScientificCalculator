@@ -39,11 +39,7 @@
         app:layout_constraintVertical_bias="0.166" />
 
     <Button
-<<<<<<< HEAD
         android:id="@+id/b_acos"
-=======
-        android:id="@+id/b_cos-1"
->>>>>>> upstream/master
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="91dp"
         android:layout_height="61dp"
@@ -294,11 +290,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-<<<<<<< HEAD
         android:id="@+id/b_asin"
-=======
-        android:id="@+id/b_sin-1"
->>>>>>> upstream/master
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="91dp"
         android:layout_height="61dp"
@@ -516,11 +508,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-<<<<<<< HEAD
         android:id="@+id/b_atan"
-=======
-        android:id="@+id/b_tan-1"
->>>>>>> upstream/master
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="91dp"
         android:layout_height="61dp"
