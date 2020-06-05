@@ -15,11 +15,9 @@ public class MainActivity extends AppCompatActivity {
     TextView textView, textView2, textView3;
     Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, b_dot, b_equal,b_sign, btn, b_plus, b_minus, b_multiply, b_divide,b_backspace,b_percentage, b_log10, b_ln, b_root, b_xfac, b_sin, b_cos, b_tan,b_asin,b_acos,b_atan,b_ex, b_exponent;
     float result; // Stores number in textView
-<<<<<<< HEAD
+
     float result2, result3=0; // Used when arithmetic or scientific functions are called
-=======
-    float result2, result3 = 0; // Used when arithmetic or scientific functions are called
->>>>>>> 3412e9255bd27fa7fa059de253fc87c0f4bf4b66
+
     boolean Add, Sub, Mul, Div, exp; // Stores truth value of function call
     int k=0;
     @Override
@@ -211,10 +209,36 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = textView3.getText().toString();
-
-                if(Sub || Mul || Div){
+                if (Sub){
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3-result;
+                }
+                else if (Mul){
+                    result=Float.parseFloat(textView.getText()+ "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result*result3;
+                }
+                else if (Div){
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3/result;
+                }
+                if((Sub || Mul || Div)){
                     Sub = Mul = Div = false;
-                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
                 }
                 else if (Add && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "+" is pressed back to back
@@ -238,9 +262,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = textView3.getText().toString();
+                if (Add){
+                    result=Float.parseFloat(textView.getText()+ "");
+                    result3=result+result3;
+                    k++;
+                }
+                else if (Mul){
+                    result=Float.parseFloat(textView.getText()+ "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result*result3;
+                }
+                else if (Div){
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3/result;
+                }
                 if(Add || Mul || Div){
                     Add = Mul = Div = false;
-                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
                 }
                 else if (Sub && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "-" is pressed back to back
@@ -268,9 +315,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = textView3.getText().toString();
+                if (Add){
+                    result=Float.parseFloat(textView.getText()+ "");
+                    result3=result+result3;
+                    k++;
+                }
+                else if (Sub){
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3-result;
+                }
+                else if (Div){
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3/result;
+                }
                 if(Sub || Add || Div){
                     Sub = Add = Div = false;
-                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
                 }
                 else if (Mul && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "*" is pressed back to back
@@ -296,9 +366,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = textView3.getText().toString();
+                if (Add){
+                    result=Float.parseFloat(textView.getText()+ "");
+                    result3=result+result3;
+                    k++;
+                }
+                else if (Sub){
+                    result = Float.parseFloat(textView.getText() + "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result3-result;
+                }
+                else if (Mul){
+                    result=Float.parseFloat(textView.getText()+ "");
+                    if(k==0){
+                        result3=result;
+                        k++;
+                    }
+                    else
+                        result3=result*result3;
+                }
                 if(Sub || Mul || Add){
                     Sub = Mul = Add = false;
-                    textView3.setText(str.substring(0,str.length()-3)); // When two operators are pressed back to back
+                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
                 }
                 else if (Div && Float.parseFloat(textView.getText()+ "")==0) {
                     textView3.setText(str.substring(0,str.length()-3)); // When "/" is pressed back to back
@@ -544,11 +637,10 @@ public class MainActivity extends AppCompatActivity {
                 k=0;
 
                 if(Add==true){
-<<<<<<< HEAD
+
                     textView.setText(result2 + result3+"y"+result3);
-=======
                     textView.setText(result2 + result3+"");
->>>>>>> 3412e9255bd27fa7fa059de253fc87c0f4bf4b66
+
                     float sum = result2+result3;
                     String str1 = textView3.getText().toString();
                     textView3.setText(str1+" = "+sum+"");
