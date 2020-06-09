@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         textView3 = findViewById(R.id.textView3);
 
         // Default value of textView is always 0
-        textView.setText("" + 0);
+        textView.setText("0");
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,52 +208,49 @@ public class MainActivity extends AppCompatActivity {
         b_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = textView3.getText().toString();
-                if (Sub){
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
-                        result3=result;
+                try {
+                    String str = textView3.getText().toString();
+                    if (Sub) {
+                        result = Float.parseFloat(textView.getText() + "");
+                        if (k == 0) {
+                            result3 = result;
+                            k++;
+                        } else
+                            result3 = result3 - result;
+                    } else if (Mul) {
+                        result = Float.parseFloat(textView.getText() + "");
+                        if (k == 0) {
+                            result3 = result;
+                            k++;
+                        } else
+                            result3 = result * result3;
+                    } else if (Div) {
+                        result = Float.parseFloat(textView.getText() + "");
+                        if (k == 0) {
+                            result3 = result;
+                            k++;
+                        } else
+                            result3 = result3 / result;
+                    }
+                    if ((Sub || Mul || Div)) {
+                        Sub = Mul = Div = false;
+                        textView3.setText(str.substring(0, str.length())); // When two operators are pressed back to back
+                    } else if (Add && Float.parseFloat(textView.getText() + "") == 0) {
+                        textView3.setText(str.substring(0, str.length() - 3)); // When "+" is pressed back to back
+                    } else {
+                        result = Float.parseFloat(textView.getText() + "");
+                        result3 = result + result3;
                         k++;
                     }
-                    else
-                        result3=result3-result;
+                    textView2.setText("+");
+                    textView3.setText(textView3.getText() + " + ");
+                    Add = true;
+                    textView.setText("0");
                 }
-                else if (Mul){
-                    result=Float.parseFloat(textView.getText()+ "");
-                    if(k==0){
-                        result3=result;
-                        k++;
-                    }
-                    else
-                        result3=result*result3;
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
                 }
-                else if (Div){
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
-                        result3=result;
-                        k++;
-                    }
-                    else
-                        result3=result3/result;
-                }
-                if((Sub || Mul || Div)){
-                    Sub = Mul = Div = false;
-                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
-                }
-                else if (Add && Float.parseFloat(textView.getText()+ "")==0) {
-                    textView3.setText(str.substring(0,str.length()-3)); // When "+" is pressed back to back
-                }
-                else{
-                    result=Float.parseFloat(textView.getText()+ "");
-                    result3=result+result3;
-                    k++;
-                }
-                textView2.setText("+");
-                textView3.setText(textView3.getText()+" + ");
-                Add=true;
-                textView.setText("0");
-
-
             }
         });
 
@@ -261,52 +258,57 @@ public class MainActivity extends AppCompatActivity {
         b_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = textView3.getText().toString();
-                if (Add){
-                    result=Float.parseFloat(textView.getText()+ "");
-                    result3=result+result3;
-                    k++;
-                }
-                else if (Mul){
-                    result=Float.parseFloat(textView.getText()+ "");
-                    if(k==0){
-                        result3=result;
+                try{
+                    String str = textView3.getText().toString();
+                    if (Add){
+                        result=Float.parseFloat(textView.getText()+ "");
+                        result3=result+result3;
                         k++;
                     }
-                    else
-                        result3=result*result3;
-                }
-                else if (Div){
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
-                        result3=result;
-                        k++;
+                    else if (Mul){
+                        result=Float.parseFloat(textView.getText()+ "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result*result3;
                     }
-                    else
-                        result3=result3/result;
-                }
-                if(Add || Mul || Div){
-                    Add = Mul = Div = false;
-                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
-                }
-                else if (Sub && Float.parseFloat(textView.getText()+ "")==0) {
-                    textView3.setText(str.substring(0,str.length()-3)); // When "-" is pressed back to back
-                }
-                else {
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
-                        result3=result;
-                        k++;
+                    else if (Div){
+                        result = Float.parseFloat(textView.getText() + "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result3/result;
                     }
-                    else
-                        result3=result3-result;
+                    if(Add || Mul || Div){
+                        Add = Mul = Div = false;
+                        textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
+                    }
+                    else if (Sub && Float.parseFloat(textView.getText()+ "")==0) {
+                        textView3.setText(str.substring(0,str.length()-3)); // When "-" is pressed back to back
+                    }
+                    else {
+                        result = Float.parseFloat(textView.getText() + "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result3-result;
 
+                    }
+                    textView2.setText("-");
+                    textView3.setText(textView3.getText()+" - ");
+                    Sub=true;
+                    textView.setText("0");
                 }
-                textView2.setText("-");
-                textView3.setText(textView3.getText()+" - ");
-                Sub=true;
-                textView.setText("0");
-
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -314,50 +316,56 @@ public class MainActivity extends AppCompatActivity {
         b_multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = textView3.getText().toString();
-                if (Add){
-                    result=Float.parseFloat(textView.getText()+ "");
-                    result3=result+result3;
-                    k++;
-                }
-                else if (Sub){
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
-                        result3=result;
+                try{
+                    String str = textView3.getText().toString();
+                    if (Add){
+                        result=Float.parseFloat(textView.getText()+ "");
+                        result3=result+result3;
                         k++;
                     }
-                    else
-                        result3=result3-result;
-                }
-                else if (Div){
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
+                    else if (Sub){
+                        result = Float.parseFloat(textView.getText() + "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result3-result;
+                    }
+                    else if (Div){
+                        result = Float.parseFloat(textView.getText() + "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result3/result;
+                    }
+                    if(Sub || Add || Div){
+                        Sub = Add = Div = false;
+                        textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
+                    }
+                    else if (Mul && Float.parseFloat(textView.getText()+ "")==0) {
+                        textView3.setText(str.substring(0,str.length()-3)); // When "*" is pressed back to back
+                    }
+                    else{
+                        result=Float.parseFloat(textView.getText()+ "");
+                        if(k==0){
                         result3=result;
                         k++;
+                        }
+                        else
+                            result3=result*result3;
                     }
-                    else
-                        result3=result3/result;
+                    textView2.setText("*");
+                    textView3.setText(textView3.getText()+" * ");
+                    Mul=true;
+                    textView.setText("0");
                 }
-                if(Sub || Add || Div){
-                    Sub = Add = Div = false;
-                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
                 }
-                else if (Mul && Float.parseFloat(textView.getText()+ "")==0) {
-                    textView3.setText(str.substring(0,str.length()-3)); // When "*" is pressed back to back
-                }
-                else{
-                    result=Float.parseFloat(textView.getText()+ "");
-                    if(k==0){
-                    result3=result;
-                    k++;
-                    }
-                    else
-                        result3=result*result3;
-                }
-                textView2.setText("*");
-                textView3.setText(textView3.getText()+" * ");
-                Mul=true;
-                textView.setText("0");
             }
         });
 
@@ -365,50 +373,56 @@ public class MainActivity extends AppCompatActivity {
         b_divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = textView3.getText().toString();
-                if (Add){
-                    result=Float.parseFloat(textView.getText()+ "");
-                    result3=result+result3;
-                    k++;
-                }
-                else if (Sub){
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
-                        result3=result;
+                try{
+                    String str = textView3.getText().toString();
+                    if (Add){
+                        result=Float.parseFloat(textView.getText()+ "");
+                        result3=result+result3;
                         k++;
                     }
-                    else
-                        result3=result3-result;
-                }
-                else if (Mul){
-                    result=Float.parseFloat(textView.getText()+ "");
-                    if(k==0){
-                        result3=result;
-                        k++;
+                    else if (Sub){
+                        result = Float.parseFloat(textView.getText() + "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result3-result;
                     }
-                    else
-                        result3=result*result3;
-                }
-                if(Sub || Mul || Add){
-                    Sub = Mul = Add = false;
-                    textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
-                }
-                else if (Div && Float.parseFloat(textView.getText()+ "")==0) {
-                    textView3.setText(str.substring(0,str.length()-3)); // When "/" is pressed back to back
-                }
-                else {
-                    result = Float.parseFloat(textView.getText() + "");
-                    if(k==0){
-                        result3=result;
-                        k++;
+                    else if (Mul){
+                        result=Float.parseFloat(textView.getText()+ "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result*result3;
                     }
-                    else
-                        result3=result3/result;
+                    if(Sub || Mul || Add){
+                        Sub = Mul = Add = false;
+                        textView3.setText(str.substring(0,str.length())); // When two operators are pressed back to back
+                    }
+                    else if (Div && Float.parseFloat(textView.getText()+ "")==0) {
+                        textView3.setText(str.substring(0,str.length()-3)); // When "/" is pressed back to back
+                    }
+                    else {
+                        result = Float.parseFloat(textView.getText() + "");
+                        if(k==0){
+                            result3=result;
+                            k++;
+                        }
+                        else
+                            result3=result3/result;
+                    }
+                    textView2.setText("/");
+                    textView3.setText(textView3.getText()+" / ");
+                    Div=true;
+                    textView.setText("0");
                 }
-                textView2.setText("/");
-                textView3.setText(textView3.getText()+" / ");
-                Div=true;
-                textView.setText("0");
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -416,12 +430,18 @@ public class MainActivity extends AppCompatActivity {
         b_log10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result = Float.parseFloat(textView.getText()+ "");
-                textView3.setText("log("+result+") = ");
-                result = (float) Math.log10(result);
-                textView2.setText("");
-                textView.setText(result+"");
-                textView3.setText(textView3.getText().toString()+result+"");
+                try{
+                    result = Float.parseFloat(textView.getText()+ "");
+                    textView3.setText("log("+result+") = ");
+                    result = (float) Math.log10(result);
+                    textView2.setText("");
+                    textView.setText(result+"");
+                    textView3.setText(textView3.getText().toString()+result+"");
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -429,11 +449,17 @@ public class MainActivity extends AppCompatActivity {
         b_percentage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float result1 = Float.parseFloat(textView.getText()+ "");
-                result1 = result1/100;
-                textView2.setText("");
-                textView.setText(result1+"");
-                textView3.setText(textView3.getText()+"%");
+                try {
+                    float result1 = Float.parseFloat(textView.getText() + "");
+                    result1 = result1 / 100;
+                    textView2.setText("");
+                    textView.setText(result1 + "");
+                    textView3.setText(textView3.getText() + "%");
+                }
+                catch(NumberFormatException e){
+                textView.setText("Error");
+                textView3.setText("");
+                }
             }
         });
 
@@ -441,12 +467,18 @@ public class MainActivity extends AppCompatActivity {
         b_ln.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result = Float.parseFloat(textView.getText()+ "");
-                textView3.setText("ln("+result+") = ");
-                result = (float) Math.log(result);
-                textView2.setText("");
-                textView.setText(result+"");
-                textView3.setText(textView3.getText().toString()+result+"");
+                try {
+                    result = Float.parseFloat(textView.getText() + "");
+                    textView3.setText("ln(" + result + ") = ");
+                    result = (float) Math.log(result);
+                    textView2.setText("");
+                    textView.setText(result + "");
+                    textView3.setText(textView3.getText().toString() + result + "");
+                }
+                catch(NumberFormatException e){
+                textView.setText("Error");
+                textView3.setText("");
+                }
             }
         });
 
@@ -454,12 +486,18 @@ public class MainActivity extends AppCompatActivity {
         b_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float result1 = Float.parseFloat(textView.getText()+ "");
-                if(result1 != 0) {
-                    result1 = result1 * -1;
-                    textView2.setText("");
-                    textView.setText(result1+"");
-                    textView3.setText(textView3.getText().toString()+"*(-1)");
+                try {
+                    float result1 = Float.parseFloat(textView.getText() + "");
+                    if (result1 != 0) {
+                        result1 = result1 * -1;
+                        textView2.setText("");
+                        textView.setText(result1 + "");
+                        textView3.setText(textView3.getText().toString() + "*(-1)");
+                    }
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
                 }
             }
         });
@@ -468,9 +506,15 @@ public class MainActivity extends AppCompatActivity {
         b_root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result=Float.parseFloat(textView.getText()+ "");
-                textView.setText(Math.sqrt(result)+"");
-                textView3.setText("\u221A"+result+" = "+textView.getText());
+                try {
+                    result = Float.parseFloat(textView.getText() + "");
+                    textView.setText(Math.sqrt(result) + "");
+                    textView3.setText("\u221A" + result + " = " + textView.getText());
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -478,22 +522,26 @@ public class MainActivity extends AppCompatActivity {
         b_xfac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result=Float.parseFloat(textView.getText()+ "");
-                if (result != Math.round(result))
-                {
-                    textView2.setText("");
-                    textView.setText("Error");
-                }
-                else {
-                    textView3.setText(Math.round(result)+"! = ");
-                    float total = 1;
-                    while (result > 1) {
-                        total *= result;
-                        result = result - 1;
+                try {
+                    result = Float.parseFloat(textView.getText() + "");
+                    if (result != Math.round(result) || result < 0) {
+                        textView2.setText("");
+                        textView.setText("Error");
+                    } else {
+                        textView3.setText(Math.round(result) + "! = ");
+                        float total = 1;
+                        while (result > 1) {
+                            total *= result;
+                            result = result - 1;
+                        }
+                        textView2.setText("");
+                        textView.setText(total + "");
+                        textView3.setText(textView3.getText().toString() + total + "");
                     }
-                    textView2.setText("");
-                    textView.setText(total + "");
-                    textView3.setText(textView3.getText().toString()+total+"");
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
                 }
             }
         });
@@ -521,11 +569,17 @@ public class MainActivity extends AppCompatActivity {
         b_sin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float degrees = Float.parseFloat(textView.getText() + "");
-                double radians = Math.toRadians(degrees);
-                result = (float) Math.sin(radians);
-                textView.setText("" + result);
-                textView3.setText("sin("+degrees+") = "+result);
+                try {
+                    float degrees = Float.parseFloat(textView.getText() + "");
+                    double radians = Math.toRadians(degrees);
+                    result = (float) Math.sin(radians);
+                    textView.setText("" + result);
+                    textView3.setText("sin(" + degrees + ") = " + result);
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -533,11 +587,17 @@ public class MainActivity extends AppCompatActivity {
         b_cos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float degrees = Float.parseFloat(textView.getText() + "");
-                double radians = Math.toRadians(degrees);
-                result = (float) Math.cos(radians);
-                textView.setText("" + result);
-                textView3.setText("cos("+degrees+") = "+result);
+                try {
+                    float degrees = Float.parseFloat(textView.getText() + "");
+                    double radians = Math.toRadians(degrees);
+                    result = (float) Math.cos(radians);
+                    textView.setText("" + result);
+                    textView3.setText("cos(" + degrees + ") = " + result);
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -545,11 +605,17 @@ public class MainActivity extends AppCompatActivity {
         b_tan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float degrees = Float.parseFloat(textView.getText() + "");
-                double radians = Math.toRadians(degrees);
-                result = (float) Math.tan(radians);
-                textView.setText("" + result);
-                textView3.setText("tan("+degrees+") = "+result);
+                try {
+                    float degrees = Float.parseFloat(textView.getText() + "");
+                    double radians = Math.toRadians(degrees);
+                    result = (float) Math.tan(radians);
+                    textView.setText("" + result);
+                    textView3.setText("tan(" + degrees + ") = " + result);
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -557,11 +623,17 @@ public class MainActivity extends AppCompatActivity {
         b_asin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float val = Float.parseFloat(textView.getText() + "");
-                result = (float) Math.asin(val);
-                result = (float) Math.toDegrees(result);
-                textView.setText("" + result);
-                textView3.setText("sin-1("+val+") = "+result);
+                try {
+                    float val = Float.parseFloat(textView.getText() + "");
+                    result = (float) Math.asin(val);
+                    result = (float) Math.toDegrees(result);
+                    textView.setText("" + result);
+                    textView3.setText("sin-1(" + val + ") = " + result);
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
 
             }
         });
@@ -570,11 +642,17 @@ public class MainActivity extends AppCompatActivity {
         b_acos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float val = Float.parseFloat(textView.getText() + "");
-                result = (float) Math.acos(val);
-                result = (float) Math.toDegrees(result);
-                textView.setText("" + result);
-                textView3.setText("cos-1("+val+") = "+result);
+                try {
+                    float val = Float.parseFloat(textView.getText() + "");
+                    result = (float) Math.acos(val);
+                    result = (float) Math.toDegrees(result);
+                    textView.setText("" + result);
+                    textView3.setText("cos-1(" + val + ") = " + result);
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
 
             }
         });
@@ -583,12 +661,17 @@ public class MainActivity extends AppCompatActivity {
         b_atan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float val = Float.parseFloat(textView.getText() + "");
-                result = (float) Math.atan(val);
-                result = (float) Math.toDegrees(result);
-                textView.setText("" + result);
-                textView3.setText("tan-1("+val+") = "+result);
-
+                try {
+                    float val = Float.parseFloat(textView.getText() + "");
+                    result = (float) Math.atan(val);
+                    result = (float) Math.toDegrees(result);
+                    textView.setText("" + result);
+                    textView3.setText("tan-1(" + val + ") = " + result);
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -596,12 +679,18 @@ public class MainActivity extends AppCompatActivity {
         b_ex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result = Float.parseFloat(textView.getText()+ "");
-                textView3.setText("e^"+result);
-                result = (float) Math.exp(result);
-                textView2.setText("");
-                textView.setText(result+"");
-                textView3.setText(textView3.getText().toString()+" = "+result+"");
+                try {
+                    result = Float.parseFloat(textView.getText() + "");
+                    textView3.setText("e^" + result);
+                    result = (float) Math.exp(result);
+                    textView2.setText("");
+                    textView.setText(result + "");
+                    textView3.setText(textView3.getText().toString() + " = " + result + "");
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -609,11 +698,17 @@ public class MainActivity extends AppCompatActivity {
         b_exponent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result = Float.parseFloat(textView.getText()+ "");
-                textView3.setText(result+"^");
-                textView2.setText("y");
-                exp = true;
-                textView.setText("0");
+                try {
+                    result = Float.parseFloat(textView.getText() + "");
+                    textView3.setText(result + "^");
+                    textView2.setText("y");
+                    exp = true;
+                    textView.setText("0");
+                }
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
+                }
             }
         });
 
@@ -633,57 +728,62 @@ public class MainActivity extends AppCompatActivity {
         b_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result2=Float.parseFloat(textView.getText()+"");
-                k=0;
+                try {
+                    result2 = Float.parseFloat(textView.getText() + "");
+                    k = 0;
 
-                if(Add==true){
+                    if (Add == true) {
 
-                    textView.setText(result2 + result3+"y"+result3);
-                    textView.setText(result2 + result3+"");
+                        textView.setText(result2 + result3 + "y" + result3);
+                        textView.setText(result2 + result3 + "");
 
-                    float sum = result2+result3;
-                    String str1 = textView3.getText().toString();
-                    textView3.setText(str1+" = "+sum+"");
-                    Add=false;
-                    textView2.setText("");
-                    result3=0;
-                }
-                if(Sub==true){
-                    textView.setText(result3 - result2+"");
-                    float diff = result3-result2;
-                    String str1 = textView3.getText().toString();
-                    textView3.setText(str1+" = "+diff+"");
-                    Sub=false;
-                    textView2.setText("");
-                    result3=0;
+                        float sum = result2 + result3;
+                        String str1 = textView3.getText().toString();
+                        textView3.setText(str1 + " = " + sum + "");
+                        Add = false;
+                        textView2.setText("");
+                        result3 = 0;
+                    }
+                    if (Sub == true) {
+                        textView.setText(result3 - result2 + "");
+                        float diff = result3 - result2;
+                        String str1 = textView3.getText().toString();
+                        textView3.setText(str1 + " = " + diff + "");
+                        Sub = false;
+                        textView2.setText("");
+                        result3 = 0;
 
+                    }
+                    if (Mul == true) {
+                        textView.setText(result3 * result2 + "");
+                        float prod = result3 * result2;
+                        String str1 = textView3.getText().toString();
+                        textView3.setText(str1 + " = " + prod + "");
+                        Mul = false;
+                        textView2.setText("");
+                        result3 = 0;
+                    }
+                    if (Div == true) {
+                        textView.setText(result3 / result2 + "");
+                        float div = result3 / result2;
+                        String str1 = textView3.getText().toString();
+                        textView3.setText(str1 + " = " + div + "");
+                        Div = false;
+                        textView2.setText("");
+                    }
+                    if (exp == true) {
+                        float power = (float) Math.pow(result, result2);
+                        textView.setText(power + "");
+                        exp = false;
+                        textView2.setText("");
+                        textView3.setText(textView3.getText().toString() + " = " + power);
+                    }
                 }
-                if(Mul==true){
-                    textView.setText(result3 * result2+"");
-                    float prod = result3 * result2;
-                    String str1 = textView3.getText().toString();
-                    textView3.setText(str1+" = "+prod+"");
-                    Mul=false;
-                    textView2.setText("");
-                    result3=0;
-                }
-                if(Div==true){
-                    textView.setText(result3 / result2+"");
-                    float div = result3/result2;
-                    String str1 = textView3.getText().toString();
-                    textView3.setText(str1+" = "+div+"");
-                    Div=false;
-                    textView2.setText("");
-                }
-                if (exp==true){
-                    float power = (float) Math.pow(result, result2);
-                    textView.setText(power+"");
-                    exp=false;
-                    textView2.setText("");
-                    textView3.setText(textView3.getText().toString()+" = "+power);
+                catch(NumberFormatException e){
+                    textView.setText("Error");
+                    textView3.setText("");
                 }
             }
         });
-
     }
 }
