@@ -25,7 +25,7 @@ git clone https://github.com/gaurang2001/ScientificCalculator.git
 
 ## Screenshots
 
- ![alt text](https://github.com/gaurang2001/ScientificCalculator/images/img.jpeg)
+<img src="images/img.jpeg" height="500"></img>
 
 ## Implemented features
 
